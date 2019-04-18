@@ -56,7 +56,15 @@ class OrdersController < ApplicationController
     order
   end
 
-  def show_order
+  def order_params
+    params.require(:order).permit(
+      :email,
+      :quantity,
+      :category_id,
+      :quantity,
+      :image,
+      :price
+    )
   end
 
 end
