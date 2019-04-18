@@ -7,11 +7,34 @@
     <p>
     Thank you for your order at jungle.com, <%= @order.email %>. Below is your receipt of your order
     </p>
-    <p>
-      <% @order.line_items.each do |item| %>
-        <%= render item, item: item %>
+    <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th colspan="2">Product</th>
+        <th>Unit Price</th>
+        <th>Quantity</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% LineItem.where(order_id:@order).each do |item| %>
+        <% Product.where(id:item.product_id).each do |prod| %>
+        <%= render 'item', product: prod, quantity: item.quantity.to_i %>
         <% end %>
-    </p>
-    <p>Thanks for joining and have a great day!</p>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th colspan="4">
+          TOTAL:
+        </th>
+        <th>
+          <%= @order.total_cents / 100.0 %>
+        </th>
+      </tr>
+    </tfoot>
+  </table>
+  <p>I hope you love the product!</p>
+  <p>Jungle Creatures</p>
   </body>
 </html>

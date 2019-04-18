@@ -26,3 +26,8 @@ class CartsController < ApplicationController
   end
 
 end
+
+
+# <% @order.line_items.each do |item| %>
+#   <%= render item, item: item %>
+#   <% end %>
