@@ -18,17 +18,10 @@
         </tr>
       </thead>
       <tbody>
-<<<<<<< HEAD
       <% LineItem.where(order_id:@order).each do |item| %>
         <%  Product.where(id:item.product_id).each do |prod| %>
         <%= render 'item', product:prod, quantity:item.quantity.to_i %>
         <% end %>
-=======
-        <% LineItem.where(order_id:@order).each do |item| %>
-          <% Product.where(id:item.product_id).each do |prod| %>
-          <%= render 'item', product: prod, quantity: item.quantity.to_i %>
-          <% end %>
->>>>>>> feature/order-receipt
         <% end %>
       </tbody>
       <tfoot>
