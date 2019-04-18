@@ -56,4 +56,7 @@ class OrdersController < ApplicationController
     order
   end
 
+  def show_order
+  end
+
 end
