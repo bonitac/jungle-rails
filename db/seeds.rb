@@ -132,5 +132,53 @@ cat3.products.create!({
   price: 2_483.75
 })
 
+User.destroy_all
+
+puts "Creating user"
+User.create! ({
+  first_name:'Bonita',
+  last_name: 'Choi',
+  email: 'bonitac93@gmail.com',
+  password: 'bob'
+})
+
+puts "Users created"
+Rating.destroy_all
+
+puts "Creating ratings"
+Rating.create!({
+  product_id: (Product.find_or_create_by! name: 'Red Bookshelf').id,
+  user_id: (User.find_or_create_by! first_name:'Bonita').id,
+  description: 'Best bookshelf',
+  rating: 5
+})
+
+Rating.create!({
+  product_id: (Product.find_or_create_by! name: 'Electric Chair').id,
+  user_id: (User.find_or_create_by! first_name:'Bonita').id,
+  description: 'Sounds scary, but fun!',
+  rating: 4
+})
+
+Rating.create!({
+  product_id: (Product.find_or_create_by! name: 'World\'s Largest Smartwatch').id,
+  user_id: (User.find_or_create_by! first_name:'Bonita').id,
+  description: 'Way too big',
+  rating: 1
+})
+
+Rating.create!({
+  product_id: (Product.find_or_create_by! name: 'Human Feet Shoes').id,
+  user_id: (User.find_or_create_by! first_name:'Bonita').id,
+  description: 'Ew',
+  rating: 1
+})
+
+Rating.create!({
+  product_id: (Product.find_or_create_by! name: 'Women\'s Zebra pants').id,
+  user_id: (User.find_or_create_by! first_name:'Bonita').id,
+  description: 'Slightly less ew',
+  rating: 2
+})
 
 puts "DONE!"
