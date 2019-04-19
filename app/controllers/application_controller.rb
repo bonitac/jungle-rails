@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
   def authorize
     redirect_to '/login' unless current_user
   end
+
   #follow steps 15, 16 for securing certain pages
 
   private
