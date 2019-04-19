@@ -5,7 +5,10 @@ class CartsController < ApplicationController
 
   def add_item
     product_id = params[:product_id].to_s
-    modify_cart_delta(product_id, +1)
+    if Product.find(product_id).quantity==0
+    else
+      modify_cart_delta(product_id, +1)
+    end
 
     redirect_to :back
   end
