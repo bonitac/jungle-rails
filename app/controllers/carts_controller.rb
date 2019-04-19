@@ -25,9 +25,8 @@ class CartsController < ApplicationController
     update_cart cart
   end
 
+  def empty? 
+    self.id
+  end
+
 end
-
-
-# <% @order.line_items.each do |item| %>
-#   <%= render item, item: item %>
-#   <% end %>
