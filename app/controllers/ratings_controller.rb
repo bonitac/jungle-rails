@@ -1,5 +1,5 @@
 class RatingsController < ApplicationController
-  # before_action :rating_params, except: [:destroy]
+  before_action :rating_params, except: [:destroy]
   # before_action :set_product, only: [:create]
   # before_action :set_rating, only: [:destroy]
 
@@ -17,8 +17,10 @@ class RatingsController < ApplicationController
   end
 
   def destroy
-    @rating.destroy
-    redirect_to @product, notice: 'Review was successfully destroyed'
+    @product = Product.find(params[:product_id])
+    rating=Rating.find_by(id:params[:rating_id])
+    rating.destroy
+    redirect_to @product
   end
 
   private
