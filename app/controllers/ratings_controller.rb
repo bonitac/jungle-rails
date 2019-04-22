@@ -3,7 +3,6 @@ class RatingsController < ApplicationController
   # before_action :set_product, only: [:create]
   # before_action :set_rating, only: [:destroy]
 
-
   def create
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
     @product = Product.find(params[:product_id])
@@ -18,7 +17,7 @@ class RatingsController < ApplicationController
 
   def destroy
     @product = Product.find(params[:product_id])
-    rating=Rating.find_by(id:params[:rating_id])
+    rating=Rating.find_by(id:params[:id])
     rating.destroy
     redirect_to @product
   end

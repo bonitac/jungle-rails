@@ -51,6 +51,7 @@ class OrdersController < ApplicationController
         quantity: quantity,
         item_price: product.price,
         total_price: product.price * quantity
+        # do product quantity update here
       )
     end
     order.save!

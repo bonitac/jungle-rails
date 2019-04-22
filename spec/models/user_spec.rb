@@ -77,7 +77,7 @@ RSpec.describe User, type: :model do
     it "is not valid if email has whitespace around it" do
       @user.save
       login = User.authenticate_with_credentials("      email@email.com", "password")
-      expect(login).to be false
+      expect(login).to be true
     end
 
     it "return true if password is correct and email is in the wrong case" do

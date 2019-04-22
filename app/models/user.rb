@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
 
   def self.authenticate_with_credentials (email, password)
     email = email.downcase
+    email = email.strip
     if User.find_by(email: email).try(:authenticate, password)
       true
     else
