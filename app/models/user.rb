@@ -5,16 +5,6 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: {case_sensitive: false}, format: { without: /\s/ }
   validates :password, presence: true, confirmation: true, length: {minimum: 5}
 
-  def create
-    if user = User.authenticate_with_credentials(params[:email], params[:password])
-      # log them in
-      session[:user_id] = user.id.to_s
-      redirect_to '/'
-    else
-      # render login form
-      redirect_to '/login'
-    end
-  end
 
   def self.authenticate_with_credentials (email, password)
     email = email.downcase

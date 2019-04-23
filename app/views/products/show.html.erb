@@ -24,6 +24,7 @@
           <dd><%= @product.price %></dd>
         </dl>
       </div>
+      <% if @current_user %>
       <h3>Write a Review!</h3>
       <%=form_for([@product, @rating]) do |form| %>
         <p>
@@ -38,13 +39,14 @@
         </p>
         <p><%= form.submit %> </p>
         <% end %>
+        <% end %>
       <h3>Reviews and Ratings: </h3>
       <% Rating.where(product_id:@product).order(created_at: :desc).each do |item| %>
         <p>User: <%= User.find(item.user_id).first_name %> <%= User.find(item.user_id).last_name %></p>
         <p>Rating: <%= item.rating %></p>
         <p>Description: <%= item.description %></p>
         <p>Review created at: <%= item.created_at %></p>
-        <% if @current_user.id==item.user_id %>
+        <% if @current_user && @current_user.id==item.user_id %>
           <%= link_to fa_icon('trash'), [@product, item], class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" } %>
           <% end %>
         <% end %>

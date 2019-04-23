@@ -73,6 +73,12 @@ RSpec.describe User, type: :model do
       login = User.authenticate_with_credentials("email@email.com", "password")
       expect(login).to be true
     end
+
+    it "returns false if no password is entered" do
+      @user.save
+      login=User.authenticate_with_credentials("email@email.com","")
+      expect(login).to be false
+    end
     
     it "is not valid if email has whitespace around it" do
       @user.save
